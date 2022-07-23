@@ -16,7 +16,7 @@ export default {
     },
     methods: {
         onBtnClick() {
-            console.log('Clicked')
+            this.$emit('show-task')
         }
     }
 }

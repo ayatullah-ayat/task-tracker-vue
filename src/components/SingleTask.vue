@@ -1,5 +1,5 @@
 <template>
-    <div :class="[task.reminder ? 'reminder' : '', 'task']">
+    <div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.reminder ? 'reminder' : '', 'task']">
         <div class="d-flex flex-between">
             <h5>{{ task.text }}</h5>
             <i @click="removeTask(task.id)" class="fas fa-times"></i>

@@ -1,7 +1,10 @@
 <template>
     <div class="d-flex flex-between">
         <h3>{{ message }}</h3>
-        <AddButton btnText="Add Task" color='green'/>
+        <AddButton 
+            @show-task="$emit('show-task')"
+            btnText="Add Task" 
+            color='green'/>
     </div>
 </template>
 
