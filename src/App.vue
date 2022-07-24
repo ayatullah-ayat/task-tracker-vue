@@ -36,42 +36,41 @@ export default {
     }
   },
   methods: {
-    deleteTask(id) {
+    async deleteTask(id) {
       if(confirm('Are you sure?')) {
-        this.tasks = this.tasks.filter((task) => task.id !== id)
+        const res = await fetch('api/tasks/' + id, {
+          method: 'DELETE'
+        });
+        res.status === 200 ? this.tasks = this.fetchTasks() : alert('Id is missing!');
+        // res.status === 200 ? (this.tasks = this.tasks.filter((task) => task.id !== id)) : alert('Id is missing!');
       }
     },
     toggleReminder(id) {
       this.tasks = this.tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder } : task)
     },
-    addTask(task) {
-      this.tasks = [...this.tasks, task];
+    async addTask(task) {
+      const res = await fetch('api/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
+      });
+      const data = await res.json();
+      this.tasks = [...this.tasks, data];
     },
     showTask() {
       this.showAddTask = !this.showAddTask;
+    },
+    async fetchTasks() {
+      const res = await fetch('api/tasks');
+      const data = await res.json();
+
+      return data;
     }
   },
-  created(){
-    this.tasks = [
-      {
-        id: 1,
-        text: 'Doctors Appoint',
-        day: 'March 1st at 2pm',
-        reminder: true
-      },
-      {
-        id: 2,
-        text: 'Doctors Fair',
-        day: 'March 1st at 12pm',
-        reminder: true
-      },
-      {
-        id: 3,
-        text: 'Engineer Appoint',
-        day: 'March 1st at 4pm',
-        reminder: false
-      }
-    ]
+  async created(){
+    this.tasks = await this.fetchTasks();
   }
 }
 </script>
