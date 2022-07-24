@@ -3,8 +3,8 @@
         <h3>{{ message }}</h3>
         <AddButton 
             @show-task="$emit('show-task')"
-            btnText="Add Task" 
-            color='green'/>
+            :btnText="showAddTask ? 'Close' : 'Add Task'" 
+            :color="showAddTask ? 'maroon' : 'green'" />
     </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
         AddButton
     },
     props: {
-        message: String
+        message: String,
+        showAddTask: Boolean
     }
 }
 </script>

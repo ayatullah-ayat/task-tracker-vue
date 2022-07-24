@@ -2,7 +2,9 @@
   <div class="container">
       <TopHeader 
           @show-task="showTask"
-          message="Task Tracker"/>
+          message="Task Tracker"
+          :showAddTask="showAddTask" 
+      />
       <div v-if="showAddTask">
         <AddNewTask 
             @add-task="addTask"
