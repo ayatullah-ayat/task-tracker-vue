@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex flex-between">
-        <h3>{{ message }}</h3>
+        <h3>{{ title }}</h3>
         <AddButton 
             @show-task="$emit('show-task')"
             :btnText="showAddTask ? 'Close' : 'Add Task'" 
@@ -16,7 +16,7 @@ export default {
         AddButton
     },
     props: {
-        message: String,
+        title: String,
         showAddTask: Boolean
     }
 }

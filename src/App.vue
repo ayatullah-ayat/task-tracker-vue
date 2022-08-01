@@ -2,7 +2,7 @@
   <div class="container">
       <TopHeader 
           @show-task="showTask"
-          message="Task Tracker"
+          title="Task Tracker"
           :showAddTask="showAddTask" 
       />
       <router-view :showAddTask="showAddTask"></router-view>

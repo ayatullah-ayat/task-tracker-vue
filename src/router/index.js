@@ -10,7 +10,7 @@ const routes = [
         component: PageAbout,
     },
     {
-        paht: '/home',
+        path: '/home',
         name: 'PageHome',
         component: PageHome
     }
